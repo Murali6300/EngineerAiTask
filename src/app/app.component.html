@@ -1,0 +1,45 @@
+<div class="container">
+  <!-- search item text --> <br>
+  <div>
+  <input type="text" placeholder="search by first name" [(ngModel)]="searchText"> 
+</div> <br>
+  <table class="table table-bordered table-hover text-center">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let api of apidetails | searchFilterPipe : searchText" data-toggle="modal" data-target="#myModal"
+        (click)="displayRowData(api)">
+        <td>{{api.id}}</td>
+        <td>{{api.first_name}}</td>
+        <td>{{api.last_name}}</td>
+        <td>{{api.email}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title"> Api Details </h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <pre>{{apiId | json}}</pre>
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
